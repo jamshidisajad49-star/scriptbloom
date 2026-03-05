@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScriptBloom - Bespoke Artistic Services</title>
+  <link rel="icon" href="favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bs-primary: rgb(35, 125, 105);
+      --bs-primary-light: rgb(230, 245, 240);
+      --bs-primary-dark: rgb(20, 75, 60);
+      --bs-secondary: rgb(190, 165, 140);
+      --bs-accent: rgb(205, 145, 125);
+      --bs-text-dark: rgb(30, 30, 30);
+      --bs-text-light: rgb(255, 255, 255);
+      --bs-background-muted: rgb(250, 250, 250);
+      --bs-border-radius: 20px;
+      --bs-box-shadow-medium: 0 4px 12px rgba(0,0,0,0.15);
+      --bs-section-padding-y: 6rem; /* 96px */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--bs-text-dark);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--bs-text-dark);
+    }
+
+    .btn-primary {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary);
+      border-radius: var(--bs-border-radius);
+      padding: 0.75rem 1.75rem;
+      transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: var(--bs-primary-dark);
+      border-color: var(--bs-primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-light {
+      border-color: var(--bs-text-light);
+      color: var(--bs-text-light);
+      border-radius: var(--bs-border-radius);
+      padding: 0.75rem 1.75rem;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-outline-light:hover {
+      background-color: var(--bs-text-light);
+      color: var(--bs-primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-white-text-primary {
+        background-color: var(--bs-text-light);
+        color: var(--bs-primary);
+        border: 1px solid var(--bs-text-light);
+        border-radius: var(--bs-border-radius);
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-white-text-primary:hover {
+        background-color: var(--bs-primary-light);
+        color: var(--bs-primary-dark);
+        border-color: var(--bs-primary-light);
+        transform: translateY(-2px);
+    }
+
+    .section-py {
+      padding-top: var(--bs-section-padding-y);
+      padding-bottom: var(--bs-section-padding-y);
+    }
+
+    .card {
+        border-radius: var(--bs-border-radius);
+        box-shadow: var(--bs-box-shadow-medium);
+        border: none;
+        overflow: hidden;
+    }
+
+    .card-hover-bg-shift {
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .card-hover-bg-shift:hover {
+        background-color: var(--bs-background-muted);
+        transform: translateY(-5px);
+    }
+
+    .img-hover-effect-lighten {
+        transition: filter 0.3s ease;
+    }
+    .img-hover-effect-lighten:hover {
+        filter: brightness(1.1);
+    }
+
+    .form-control {
+      border-radius: var(--bs-border-radius);
+      box-shadow: var(--bs-box-shadow-medium);
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 0.75rem 1.25rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: var(--bs-primary);
+      box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), .25);
+    }
+
+    .form-select {
+       border-radius: var(--bs-border-radius);
+       box-shadow: var(--bs-box-shadow-medium);
+       border: 1px solid rgba(0,0,0,0.1);
+       padding: 0.75rem 1.25rem;
+       transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-select:focus {
+      border-color: var(--bs-primary);
+      box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), .25);
+    }
+
+    .icon-container-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 4rem;
+      height: 4rem;
+      border: 2px solid var(--bs-primary);
+      border-radius: 50%;
+      color: var(--bs-primary);
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    .cookie-consent-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(30, 30, 30, 0.9);
+      color: var(--bs-text-light);
+      padding: 1rem;
+      text-align: center;
+      z-index: 1050;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    }
+    .cookie-consent-banner p {
+      margin-bottom: 0;
+      flex-grow: 1;
+      max-width: 700px;
+    }
+    .cookie-consent-banner .btn {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary);
+      color: var(--bs-text-light);
+      border-radius: var(--bs-border-radius);
+      padding: 0.5rem 1.5rem;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+    }
+    .cookie-consent-banner .btn:hover {
+      background-color: var(--bs-primary-dark);
+      opacity: 0.9;
+    }
+    #cookieConsentBtn {
+      cursor: pointer;
+    }
+
+    @media (max-width: 767.98px) {
+        .cookie-consent-banner {
+            flex-direction: column;
+            text-align: center;
+        }
+        .cookie-consent-banner p {
+            width: 100%;
+        }
+    }
+
+    .hero-primary-bg {
+        background-color: var(--bs-primary);
+    }
+    .hero-text-light {
+        color: var(--bs-text-light);
+    }
+
+    .about-section-bg {
+        background-color: var(--bs-background-muted);
+    }
+
+    .testimonials-section-bg {
+        background-color: var(--bs-primary-light);
+    }
+
+    .bento-grid-item {
+        margin-bottom: 1.5rem; /* Spacing between bento items */
+    }
+
+    /* Bento Grid for Services - custom sizing */
+    @media (min-width: 768px) {
+        .bento-large-75 {
+            grid-column: span 3; /* For a 4-column grid, this would be 75% */
+        }
+        .bento-small-25 {
+            grid-column: span 1; /* For a 4-column grid, this would be 25% */
+        }
+        #services .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Example 4-column base */
+            gap: 1.5rem; /* Gap between grid items */
+        }
+    }
+    @media (max-width: 767.98px) {
+       #services .bento-grid-item {
+            width: 100%;
+       }
+    }
+
+    .portfolio-gallery img {
+        border-radius: var(--bs-border-radius);
+        box-shadow: var(--bs-box-shadow-medium);
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .portfolio-gallery img:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .footer-dark-bg {
+        background-color: var(--bs-text-dark);
+        color: var(--bs-text-light);
+    }
+
+    .form-circle-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border: 1px solid var(--bs-primary);
+        border-radius: 50%;
+        color: var(--bs-primary);
+        font-size: 1rem;
+        margin-right: 0.5rem;
+        flex-shrink: 0;
+    }
+    .text-primary-color {
+      color: var(--bs-primary) !important;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
+      <div class="container-fluid container-xxl">
+        <a class="navbar-brand text-primary-color fw-bold fs-4" href="#">ScriptBloom</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto text-center">
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="#studio">The Studio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="#testimonials">Client Stories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="#contact">Inquire</a>
+            </li>
+            <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+              <a class="btn btn-primary rounded-pill px-4" href="#contact">Book Consultation</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="hero" class="hero-primary-bg text-light section-py overflow-hidden">
+      <div class="container-fluid container-xxl">
+        <div class="row align-items-center">
+          <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+            <img src="images/hero-calligraphy-studio-640x640.jpeg" class="img-fluid rounded-4 shadow-lg w-100" alt="ScriptBloom calligraphy desk with custom ink and nibs" width="640" height="640">
+          </div>
+          <div class="col-lg-6 order-lg-1 text-center text-lg-start">
+            <h1 class="display-3 mb-4 fw-bold">Bespoke Artistry by ScriptBloom</h1>
+            <p class="lead mb-5 fs-4">Elevating life's most significant moments through custom calligraphy, precision engraving, and luxurious personalized stationery.</p>
+            <a href="#services" class="btn btn-white-text-primary rounded-pill px-5 py-3 fs-5">Explore Our Craft</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+<main>
+<style>
+  #scriptbloom-privacy-policy {
+    padding-top: 7rem;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+</style>
+<section id="scriptbloom-privacy-policy">
+    <h2 style="font-size: 2.25rem; font-weight: 700; margin-bottom: 1.5rem; color: #2c3e50;">Privacy Policy for ScriptBloom</h2>
+
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        At ScriptBloom, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, disclose, and protect information when you visit our website, engage with our services, or interact with us. Our services include Custom Calligraphy, Engraving, Personalised Stationery, Corporate Gifting, and Event Signage. We adhere to the principles of the General Data Protection Regulation (GDPR) and other applicable data protection laws.
+    </p>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">1. Information We Collect</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; color: #34495e;">
+        We collect different types of information for various purposes to provide and improve our services to you.
+    </p>
+    <ul style="list-style: disc; padding-left: 1.75rem; margin-bottom: 1.5rem; color: #34495e;">
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">Personal Data You Provide Directly:</strong> This includes information you voluntarily provide when you make an inquiry, request a quote, place an order, subscribe to our newsletter, or contact us directly. This may include:
+            <ul style="list-style: circle; padding-left: 1.5rem; margin-top: 0.5rem;">
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem; color: #34495e;">Your full name</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem; color: #34495e;">Email address</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem; color: #34495e;">Phone number</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem; color: #34495e;">Billing and shipping address</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem; color: #34495e;">Project details and specific requests for calligraphy, engraving, or other custom services</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem; color: #34495e;">Payment information (processed securely through third-party payment processors; we do not store full payment card details)</li>
+            </ul>
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">Usage Data:</strong> We may also collect information on how our site is accessed and used. This Usage Data may include information such as your computer's Internet Protocol (IP) address, browser type, browser version, the pages of our site that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers, and other diagnostic data.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">Tracking & Cookies Data:</strong> We use cookies and similar tracking technologies to track the activity on our site and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our site.
+        </li>
+    </ul>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">2. How We Use Your Information</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; color: #34495e;">
+        ScriptBloom uses the collected data for various purposes:
+    </p>
+    <ul style="list-style: disc; padding-left: 1.75rem; margin-bottom: 1.5rem; color: #34495e;">
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To provide and maintain our services, including responding to inquiries and fulfilling orders for calligraphy, engraving, personalised stationery, corporate gifting, and event signage.</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To manage your orders and projects effectively.</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To notify you about changes to our services.</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To allow you to participate in interactive features of our site when you choose to do so.</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To provide customer support.</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To gather analysis or valuable information so that we can improve our site and services.</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To monitor the usage of our site.</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To detect, prevent and address technical issues.</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To send you newsletters, marketing or promotional materials, and other information that may be of interest to you, based on your consent or legitimate interest. You may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or instructions provided in any email we send.</li>
+    </ul>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">3. Legal Basis for Processing Personal Data Under GDPR</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; color: #34495e;">
+        If you are from the European Economic Area (EEA), ScriptBloom’s legal basis for collecting and using the personal information described in this Privacy Policy depends on the Personal Data we collect and the specific context in which we collect it.
+    </p>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; color: #34495e;">
+        We may process your Personal Data because:
+    </p>
+    <ul style="list-style: disc; padding-left: 1.75rem; margin-bottom: 1.5rem; color: #34495e;">
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">We need to perform a contract with you (e.g., to fulfill an order for customised stationery).</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">You have given us permission to do so (e.g., for marketing communications).</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">The processing is in our legitimate interests and it is not overridden by your rights (e.g., to improve our services).</li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">To comply with the law.</li>
+    </ul>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">4. Disclosure of Data</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; color: #34495e;">
+        We may share your personal data in the following situations:
+    </p>
+    <ul style="list-style: disc; padding-left: 1.75rem; margin-bottom: 1.5rem; color: #34495e;">
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">Service Providers:</strong> We may employ third-party companies and individuals to facilitate our site ("Service Providers"), to provide the service on our behalf, to perform service-related services, or to assist us in analyzing how our site is used. These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">Business Transfers:</strong> If ScriptBloom is involved in a merger, acquisition or asset sale, your Personal Data may be transferred. We will provide notice before your Personal Data is transferred and becomes subject to a different Privacy Policy.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">Legal Requirements:</strong> ScriptBloom may disclose your Personal Data in the good faith belief that such action is necessary to:
+            <ul style="list-style: circle; padding-left: 1.5rem; margin-top: 0.5rem; color: #34495e;">
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem;">To comply with a legal obligation</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem;">To protect and defend the rights or property of ScriptBloom</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem;">To prevent or investigate possible wrongdoing in connection with the service</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem;">To protect the personal safety of users of the service or the public</li>
+                <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem;">To protect against legal liability</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">5. Security of Data</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. We implement various security measures, including encryption and access controls, to protect your data.
+    </p>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">6. Data Retention</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        ScriptBloom will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
+    </p>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        ScriptBloom will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period, except when this data is used to strengthen the security or to improve the functionality of our service, or we are legally obligated to retain this data for longer time periods.
+    </p>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">7. Your Data Protection Rights Under GDPR</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; color: #34495e;">
+        If you are a resident of the European Economic Area (EEA), you have certain data protection rights. ScriptBloom aims to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.
+    </p>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; color: #34495e;">
+        If you wish to be informed what Personal Data we hold about you and if you want it to be removed from our systems, please contact us.
+    </p>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; color: #34495e;">
+        In certain circumstances, you have the following data protection rights:
+    </p>
+    <ul style="list-style: disc; padding-left: 1.75rem; margin-bottom: 1.5rem; color: #34495e;">
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">The right to access:</strong> You have the right to request copies of your personal data.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">The right to rectification:</strong> You have the right to request that we correct any information you believe is inaccurate or complete information you believe is incomplete.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">The right to erasure:</strong> You have the right to request that we erase your personal data, under certain conditions.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">The right to restrict processing:</strong> You have the right to request that we restrict the processing of your personal data, under certain conditions.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">The right to object to processing:</strong> You have the right to object to our processing of your personal data, under certain conditions.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">The right to data portability:</strong> You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.
+        </li>
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            <strong style="font-weight: 600;">The right to withdraw consent:</strong> You also have the right to withdraw your consent at any time where ScriptBloom relied on your consent to process your personal information.
+        </li>
+    </ul>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        Please note that we may ask you to verify your identity before responding to such requests. You have the right to complain to a Data Protection Authority about our collection and use of your Personal Data. For more information, please contact your local data protection authority in the European Economic Area (EEA).
+    </p>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">8. Links to Other Sites</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        Our site may contain links to other sites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies or practices of any third-party sites or services.
+    </p>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">9. Children's Privacy</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        Our services are not intended for anyone under the age of 18 ("Children"). We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Children have provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.
+    </p>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">10. Changes to This Privacy Policy</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. We will let you know via email and/or a prominent notice on our site, prior to the change becoming effective and update the "last updated" date at the top of this Privacy Policy. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+    </p>
+
+    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50;">11. Contact Us</h3>
+    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; color: #34495e;">
+        If you have any questions about this Privacy Policy, please contact us:
+    </p>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem; color: #34495e;">
+        <li style="font-size: 1rem; line-height: 1.6; margin-bottom: 0.5rem;"><strong style="font-weight: 600;">By mail:</strong> ScriptBloom, 52-17 74th Street, New York, New York, 11373, USA</li>
+    </ul>
+</section>
+</main>
+<footer class="footer-dark-bg text-light py-5">
+    <div class="container container-xxl">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          <p class="mb-0">&copy; 2024 ScriptBloom. All rights reserved. Artistic Services & Fine Calligraphy.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="./privacy.html" class="text-light text-decoration-none mx-2">Privacy Policy</a>
+          <span class="text-light">|</span>
+          <a href="./tos.html" class="text-light text-decoration-none mx-2">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="u6R8S3cookieConsent" class="cookie-consent-banner d-none">
+    <p>This website uses cookies to ensure you get the best experience on our website. By continuing to use this site, you agree to our <a href="./privacy.html" class="text-decoration-none text-light fw-bold">Privacy Policy</a>.</p>
+    <button id="cookieConsentBtn" class="btn btn-primary">Accept</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Bootstrap carousel
+      var myCarousel = document.querySelector('#testimonialCarousel');
+      if (myCarousel) {
+        new bootstrap.Carousel(myCarousel, {
+          interval: 5000,
+          wrap: true
+        });
+      }
+
+      // Cookie Consent Logic
+      const cookieName = 'u6R8S3_cookie_consent';
+      const consentBanner = document.getElementById('u6R8S3cookieConsent');
+      const consentButton = document.getElementById('cookieConsentBtn');
+
+      // Check if consent has been given
+      if (!localStorage.getItem(cookieName)) {
+        consentBanner.classList.remove('d-none');
+      }
+
+      // Handle consent button click
+      if (consentButton) {
+        consentButton.addEventListener('click', function() {
+          localStorage.setItem(cookieName, 'true');
+          consentBanner.classList.add('d-none');
+        });
+      }
+
+      // Simple image hover effect (brightness)
+      const hoverImages = document.querySelectorAll('.img-hover-effect-lighten');
+      hoverImages.forEach(img => {
+          img.addEventListener('mouseenter', () => img.style.filter = 'brightness(1.1)');
+          img.addEventListener('mouseleave', () => img.style.filter = 'brightness(1)');
+      });
+
+      // Card hover effect (background shift & slight lift)
+      const hoverCards = document.querySelectorAll('.card-hover-bg-shift');
+      hoverCards.forEach(card => {
+          card.addEventListener('mouseenter', () => {
+              card.style.backgroundColor = 'var(--bs-background-muted)';
+              card.style.transform = 'translateY(-5px)';
+          });
+          card.addEventListener('mouseleave', () => {
+              card.style.backgroundColor = ''; /* Reset to default */
+              card.style.transform = 'translateY(0)';
+          });
+      });
+    });
+  </script>
+</body>
+</html>
